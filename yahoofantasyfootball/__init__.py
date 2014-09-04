@@ -182,10 +182,12 @@ if __name__ == '__main__':
         y = YahooFantasyFootball()
         y.refresh()
         y.process()
+
         pp = pprint.PrettyPrinter(indent=4)
         pp.pprint(y.scores)
         pp.pprint(y.standings)
         pp.pprint(y.matchups)
+        
     else:
         import doctest
         doctest.testmod()
