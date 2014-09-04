@@ -24,7 +24,7 @@ YAHOO_PASSWORD = 'bar' # please be careful not to publish your password
 
 yff = yahoofantasyfootball.YahooFantasyFootball(LEAGUE_URL, YAHOO_USERNAME, YAHOO_PASSWORD)
 yff.refresh() # logs in, pulls down league HTML
-yff.process() # parses HTML, fills useful variables
+yff.process() # parses HTML, puts data into useful variables
 
 print yff.scores, yff.standings, yff.matchups
 ```
@@ -36,3 +36,7 @@ Notes
 * I have no idea if Yahoo! supports non-ASCII team names, but if they do, they will probably not be collected correctly, as I am stripping out Unicode to get rid of the silly trophy icons they put next to team names.
 
 * There is a frightening amount of additional data available through the YFF interface. Pull requests are welcome! However, it is unlikely that YFF is legally able to relay scores or player information to third parties. Consequently I am unlikely to accept PRs that collect individual player stats or other information that the NFL might have IP rights to. User-generated content and game outcome data is all fair game, though, I think.
+
+Contact
+-------
+thomas.j.lee (at) google's very popular webmail service
