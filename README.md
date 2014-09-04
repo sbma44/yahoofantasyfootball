@@ -5,6 +5,10 @@ An unofficial web scraper for Yahoo! Fantasy Football (YFF) data. Not affiliated
 
 [![Build Status](https://travis-ci.org/sbma44/yahoofantasyfootball.svg?branch=master)](https://travis-ci.org/sbma44/yahoofantasyfootball)
 
+Installation
+------------
+Should be as simple as `pip install yahoofantasyfootball`. Alternately, `python setup.py install`.
+
 Requirements
 ------------
 In addition to the libraries listed in requirements.txt, this library relies upon the presence of [PhantomJS](http://phantomjs.org/). Get it, install it, love it.
