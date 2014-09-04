@@ -6,7 +6,7 @@ def readme():
 
 setup(name='yahoofantasyfootball',
       version='0.1',
-      description='Web scraper for Yahoo! Fantasy Football data. Not affiliated with Yahoo!',
+      description='Web scraper for Yahoo! Fantasy Football data. Not affiliated with or endorsed by Yahoo!',
       url='http://github.com/sbma44/yahoofantasyfootball',
       author='Tom Lee',
       author_email='thomas.j.lee@gmail.com',
@@ -16,8 +16,5 @@ setup(name='yahoofantasyfootball',
           'BeautifulSoup', 
           'mechanize',
           'selenium',
-      ],
-      scripts=[
-        'bin/pwm_calibrate',
-      ],
+      ],      
       zip_safe=False)
