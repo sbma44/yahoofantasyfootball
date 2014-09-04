@@ -5,7 +5,7 @@ def readme():
         return f.read()
 
 setup(name='yahoofantasyfootball',
-      version='0.1',
+      version='0.2',
       description='Web scraper for Yahoo! Fantasy Football data. Not affiliated with or endorsed by Yahoo!',
       url='http://github.com/sbma44/yahoofantasyfootball',
       author='Tom Lee',
