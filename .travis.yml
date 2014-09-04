@@ -1,0 +1,10 @@
+language: python
+python:
+- '2.7'
+install: pip install -r requirements.txt
+script: python yahoofantasyfootball/__init__.py
+env:
+  global:  
+  - secure: oeANck/HlPYR/DPSV+kryAtXhAVf5aayK8nTM2BngXIYE/8DUTeARwHcVU6wy40Zqi5lTsvymvcJMeD+iWrSLeMxShNKxjpqdgo4jQhEU94IdwEGtoGxLbDQD5iFERdq0cGgWatSir2IO+2TAELQ9tSgqNoZAKCMrFBO8tylCxs=
+  - secure: diUcMYJHEw/3ekxIA0Yu9g1mq+5S/8P87BrXXVhW1+uuVSTFsxgh3x9+qSp4g4Riyu4XM4BnZBi5x95zzC0JC43Jl42GBiirH1Dr5YqNsD4+Sj7B4w9fPwpqnE/5ZHHFpWFIyjo97DRPawVT3Dam3G06tB5AYAifP/cbyQ6KWb0=
+  - secure: j6rgf7OhLIG2sqvS90pNX03SD1/9C9wH1pTS08+GAsgb14f4OewiupxP6wEttWmDkWSe12UQ4XeKrnhgzWchBx7hhcl5hnNfpxZEy0wvp3OxNoJwd7SmRvAwjLSSpjCNbCTv8dJEeMYGV73y8dhCsTXZm+BAAC3imVlH1nMly6c=
