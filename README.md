@@ -23,8 +23,7 @@ YAHOO_USERNAME = 'foo'
 YAHOO_PASSWORD = 'bar' # please be careful not to publish your password
 
 yff = yahoofantasyfootball.YahooFantasyFootball(LEAGUE_URL, YAHOO_USERNAME, YAHOO_PASSWORD)
-yff.refresh() # logs in, pulls down league HTML
-yff.process() # parses HTML, puts data into useful variables
+yff.refresh() # logs in if necessary, pulls down league HTML, processes it
 
 print yff.scores, yff.standings, yff.matchups
 ```

@@ -18,7 +18,6 @@ class YahooFantasyFootball(object):
 
     >>> y = YahooFantasyFootball()
     >>> y.refresh()
-    >>> y.process()
     
     >>> len(y.scores) > 0
     True
@@ -40,7 +39,7 @@ class YahooFantasyFootball(object):
         if league_url is None and username is None and password is None:
             self.league_url = os.environ['YAHOO_LEAGUE_URL']
             self.username = os.environ['YAHOO_USERNAME']
-            self.password = os.environ['YAHOO_PASSWORD']            
+            self.password = os.environ['YAHOO_PASSWORD']                    
 
         self.phantom = None    
         self.last_refresh = None    
@@ -73,6 +72,10 @@ class YahooFantasyFootball(object):
         return "".join(filter(lambda x: ord(x)<128, s))
 
     def refresh(self):
+        self._pull_html()
+        self._process_html()
+
+    def _pull_html(self):
         """ Refreshes HTML collected from league page, logging in if necessary """
         
         if self.phantom is None:
@@ -83,15 +86,19 @@ class YahooFantasyFootball(object):
         if ('login' in self.phantom.title.lower()) or ('sign in to yahoo' in self.phantom.title.lower()):
         
             submit_control = None
-            
+            login_control = None
+            password_control = None
+
             for e in self.phantom.find_elements_by_tag_name('input'):
                 
                 # login
                 if e.get_attribute('name') in ('login', 'id'):
+                    login_control = e
                     e.send_keys(self.username)
                 
                 # password
                 if e.get_attribute('name') in ('passwd', 'password'):
+                    password_control = e
                     e.send_keys(self.password)
                 
                 # 'remember me'
@@ -109,21 +116,26 @@ class YahooFantasyFootball(object):
                     if e.get_attribute('name') in ('.save', '__submit'):
                         submit_control = e
 
-            if submit_control is not None:
-                submit_control.click()
-                time.sleep(5)
-            else:
-                raise Exception('Submission control not found!')
+            if submit_control is None:
+                raise Exception('Submission control not found')
+            if login_control is None:
+                raise Exception('Username field control not found')
+            if password_control is None:
+                raise Exception('Password field control not found') 
+            
+            submit_control.click()
+            time.sleep(5)     
+                
 
         # wait for the html to settle down before storing it
         self.html = ''
         while self.phantom.page_source != self.html:
-            time.sleep(5)
+            time.sleep(10)
             self.html = self.phantom.page_source
 
         self.last_refresh = time.time()     
 
-    def process(self):
+    def _process_html(self):
         """ Processes collected HTML """
 
         if self.last_refresh is None:
@@ -181,7 +193,6 @@ if __name__ == '__main__':
     if '--show' in sys.argv:
         y = YahooFantasyFootball()
         y.refresh()
-        y.process()
 
         pp = pprint.PrettyPrinter(indent=4)
         pp.pprint(y.scores)
@@ -190,5 +201,5 @@ if __name__ == '__main__':
         
     else:
         import doctest
-        doctest.testmod()
+        sys.exit(doctest.testmod()[0])
 
