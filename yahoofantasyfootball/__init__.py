@@ -147,10 +147,18 @@ class YahooFantasyFootball(object):
         for row in select(b, 'ul.List-rich li.Linkable'):
             matchup = []
             for player in select(row, 'div.Grid-h-mid'):
-                score = select(player, 'div.Fz-lg')[0].getText()
-                projected = select(player, 'div.F-shade')[0].getText()
+                score = self._integerize(select(player, 'div.Fz-lg')[0].getText())
+
+                # projected points have recently been removed from 
+                # this view; return None instead
+                projected = select(player, 'div.F-shade')
+                if len(projected)>0:
+                    projected = self._integerize(projected[0].getText())
+                else:
+                    projected = None
+
                 name = select(player, 'div.Fz-sm a')[0].getText()
-                scores[name] = {'score': self._integerize(score), 'projected': self._integerize(projected)}                                
+                scores[name] = {'score': score, 'projected': projected}                                
                 matchup.append(name)
             matchups.append(matchup)
 
